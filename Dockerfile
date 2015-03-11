@@ -1,10 +1,9 @@
-FROM ubuntu:14.04
+FROM debian:jessie
 
-RUN apt-get update && apt-get install -qy apt-transport-https
+RUN apt-get update && apt-get install -qy curl
 
-RUN echo deb https://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list
-
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9 && \
-    apt-get update && apt-get install -qy lxc-docker
+RUN curl -sSL -O https://get.docker.com/builds/Linux/x86_64/docker-1.5.0 && \
+    chmod +x docker-1.5.0 && \
+    mv docker-1.5.0 /usr/local/bin/docker
 
 
